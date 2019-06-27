@@ -1,4 +1,4 @@
-# Oh my zsh.
+# Iterm2 with command auto suggestion.
 
 ## Install iterm2 and oh-my-zsh (macOS)
 
