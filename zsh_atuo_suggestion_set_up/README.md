@@ -1,5 +1,7 @@
 # Iterm2 with command auto suggestion.
 
+![image](https://github.com/function-hub/Utilities/images/autosuggest.gif)
+
 ## Install iterm2 and oh-my-zsh (macOS)
 
 link: https://www.iterm2.com/
