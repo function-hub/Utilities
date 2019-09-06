@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
+  <title></title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script>
+    function transfer() {
+      const originUrl = document.getElementById('inputUrl').value;
+      const textEle = document.getElementById('target');
+      const result = dealWithUrl(originUrl);
+      if (originUrl && originUrl.includes('code') && originUrl.includes('token')) {
+        textEle.innerHTML = result;
+      }else{
+        textEle.innerHTML = 'Please inter correct url format';
+      }
+
+    }
+    // `https://www.google.com/url?q=https://signin.test.access.pwc.com\
+    // /openam/XUI/?realm%3D/nv_iam%23passwordReset/%26\
+    // token%3DeyJ0eXAiOiJKV1QiLCJjdHkiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.ZXlKMGVYQWlPaUpLVjFRaUxDSmxibU1pT2lKQk1USTRRMEpETFVoVE1qVTJJaXdpWVd4bklqb2lVbE5CTVY4MUluMC5TMHI3THVSRWlqOGNOYXdzbk96RjVGa3JNQ2tpYmt0QlFFTnFQRjBIcUpmUy01QnpST290bEVqemRuRnVEdDN0OEI3WGpHODRKdHdjYTZTaE5EYkJKTEMyelFoUGZWNHZMQXo2VWEwbjgyZWlLNDVkMEpRTlNlZTl2anU2NWh2a3BmUXF4RHlWYk54bFVhRzFXVnIzdnVvMEktZVRraGFlb0RWMWNzN0ZhSGFxc21kQzdhWkwxcUQ3eTE3NU5mRFVROFdQV25hUU5Mdk1HV3dQeHpCTnVJUTlUWWtNNmNubDZGMXM0N1VHdU9tVURsWVZhVWZaZUl1Z0hDLW1BSGNleFlLaHBDbUtLZ2U5Z1c3dVhFRXpUT29mVEJzWG11N1pVR0thNkRzTXlhRjFzcUZtYVNYRXg0Z3hQWVcwMUpzcldFSlR4R0FiSDVEcjJUb3pHU0tyeXcuX25GYmdrU2Zfc21pbXpCUzFsREV4US5DSkN4Z0t4LVhSdmZITFVJY0VCeGFGc1NKMXAxWHdEb01sTlNKZC1UempLWk9peHIyTnlyQWNFSVd3ZUlpV2NBdC1hRURsTThjWV8xbS1OMjFlYzdFS05lNDdhY1MwSDFEbUJ4ajFyVzhfM3lXNjFGZmY3dHNuU2p6VjJ6bGtic05sc0tGWXAyVTB5MTNPXy1qQ21kMVg3RHRDOVoxcG01Y3lYUW9PZUVvRTRaWHl3TzlUaHJ0ZEhxRFFfbTBvejlkRWxqb2tVU3dzcV9BbVh0YXJmc0hYMExuTm9VVk80LWpKbEFXaXhFLUdySnU0TFAwMTUzRkdBQjJUTTZhaUlldzhTcGtYamNCVkJHbXpjcF9DX3A0ekR5Tk93U0xmbkVTeXNrYjQ5Tl9ZWk1nVjV3dDRoUnFaZGNUY1IwUU1sdW5TdU83NEJxMk1lZ2I2bF96X1ZONUZqbmJxaV96UmVfZ0txcjRkdzNSaUotYkxGWXVtOHR4ZFYwclJ0Z3pORlguQjZlVzF6V0c3ZEhiY0JfQk1XaDN6dw.AEmfIiuih63rnNYz0PG4quBD5grBwqheLXWP_RboZ9k\
+    // %26code%3D5862d9b8-7653-4be1-b3ee-2b578da2e286&source=gmail&ust=1547257748559000&usg=AFQjCNFxRf-ZoihY4rEaeWDKnUZSKBmqhA`
+    function dealWithUrl(url) {
+      let originUrl = decodeURIComponent(url);
+      originUrl = originUrl.substring(originUrl.indexOf('token'), originUrl.length);
+      originUrl = originUrl.substring(0, originUrl.indexOf('&source'));
+      const route = 'https://pg-us-e-app-428607.firebaseapp.com/reset-password?'
+      originUrl = route + originUrl;
+      console.log(originUrl);
+      return originUrl;
+    }
+  </script>
+
+<body>
+    <textarea style="width: 100%;
+    height: 300px;" name="" id="inputUrl" cols="30" rows="10" placeholder="please input origin url"></textarea>
+
+    <div style="    text-align: center;">
+      <button style="    width: 100px;
+      height: 40px;" onclick="transfer()">transfer</button>
+    </div>
+  <text id='target' class="" selectable="false" space="false" decode="false">
+    Target url
+  </text>
+
+
+</body>
+
+</html>
